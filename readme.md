@@ -1,1 +1,2 @@
-#DL codes for my training at IST using VScode
+#DL codes for the training i will be conducting at IST 
+#using tensorflow, keras on VScode
