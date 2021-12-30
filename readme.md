@@ -4,3 +4,5 @@
 ## example 1 Mnist Classification
 
 ## example 2 
+2a_python array,numpy,loops, if etc
+2b_python class, pandas etc
