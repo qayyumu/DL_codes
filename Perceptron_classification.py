@@ -1,5 +1,5 @@
 #! \usr\bin\env python
-### Perceptron Example
+### LinearClassifier Example with perceptron training etc
 ###
 from sklearn.datasets import make_classification
 from sklearn.datasets import make_circles
@@ -7,7 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-class Perceptron:
+class LinearClassifier:
     def __init__(self):
         pass
     def sigmoid(self,z):
@@ -63,11 +63,37 @@ class Perceptron:
                 w -=lr*dw
                 b -=lr*db
 
-            l = self.loss(yb,self.sigmoid(np.dot(xb,w)+b))
+            l = self.loss(y,self.sigmoid(np.dot(x,w)+b))
             losses.append(l)
             # self.plot_dec_boundry(x,w,b,y,1)
 
         return w,b,losses
+
+    def step_func(self,z):
+        return 1.0 if (z > 0) else 0.0
+
+    def percep_train(self,x, y, epochs, lr):
+    
+        m, n = x.shape
+        
+        w = np.zeros((n+1,1))   ## weight plus bias
+        
+        losses = []
+        
+        for epoch in range(epochs):
+            n_miss = 0
+            for idx, x_i in enumerate(x):
+                x_i = np.insert(x_i, 0, 1).reshape(-1,1)
+                y_hat = self.step_func(np.dot(x_i.T, w))
+          
+                if (np.squeeze(y_hat) - y[idx]) != 0:
+                    w += lr*((y[idx] - y_hat)*x_i)
+                    n_miss += 1
+       
+            losses.append(n_miss)
+            
+        return np.array([ [w[1][0]],[w[2][0]] ]),w[0][0], losses
+    
 
     def predict(self,x,w,b):
 
@@ -78,7 +104,7 @@ class Perceptron:
         pred_class = [1 if i>0.5 else 0 for i in preds]
 
         return np.array(pred_class)
-
+    
     def accuracy(self,y, y_ht):
         accuracy = np.sum(y == y_ht) / len(y)
         return accuracy
@@ -87,17 +113,28 @@ class Perceptron:
 x,Y = make_classification(n_features=2,n_classes=2,n_samples=100,n_redundant=0,n_clusters_per_class=1)
 # x,Y = make_circles(n_samples=100,noise=0.03,factor=0.7)
 
-p = Perceptron()
+p = LinearClassifier()
 w,b,loss = p.train(x,Y,bs=10,epochs=9000,lr=0.01)
 print(w,b)
-
 class_pred = p.predict(x,w,b)
 print('Accuracy= ',p.accuracy(Y,class_pred) * 100,'%')
-
 plt.subplot(1,2,1)
 p.plot_dec_boundry(x,w,b,Y,0)
 plt.subplot(1,2,2)
 plt.plot(loss)
+plt.suptitle(['Accuray' + str(p.accuracy(Y,class_pred) * 100)])
 plt.show()
 
+w1,b1,loss1 = p.percep_train(x,Y,epochs=1000,lr=0.01)
+print(w1,b1)
+
+class_pred = p.predict(x,w1,b1)
+print('Accuracy= ',p.accuracy(Y,class_pred) * 100,'%')
+
+plt.subplot(1,2,1)
+p.plot_dec_boundry(x,w1,b1,Y,0)
+plt.subplot(1,2,2)
+plt.plot(loss1)
+plt.suptitle(['Accuray' + str(p.accuracy(Y,class_pred) * 100)])
+plt.show()
 
