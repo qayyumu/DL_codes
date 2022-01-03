@@ -10,7 +10,8 @@ from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier 
 from mlxtend.plotting import plot_decision_regions 
-from sklearn.model_selection import cross_val_score
+# from sklearn.model_selection import cross_val_score
+from sklearn import metrics
 
 x,Y = make_classification(n_features=2,n_classes=2,n_samples=100,n_redundant=0,n_clusters_per_class=1)
 # x,Y = make_circles(n_samples=100,noise=0.03,factor=0.7)
@@ -38,6 +39,12 @@ plt.title("Logistic Regression: Acc= " + str(clf_LR_acc*100.))
 plt.subplot(1,3,3)
 plot_decision_regions(x,Y,clf_SVC,legend=2)
 plt.title("Support Vector Machine: Acc= "+str(clf_SVC_acc*100.))
-
 plt.show()
 
+cm = metrics.confusion_matrix(Y,clf_RF.predict(x))
+import seaborn as sns
+
+sns.heatmap(cm,annot=True, fmt=".3f", linewidths=.5, square = True, cmap = 'Blues_r')
+plt.ylabel('Actual label')
+plt.xlabel('Predicted label')
+plt.show()
