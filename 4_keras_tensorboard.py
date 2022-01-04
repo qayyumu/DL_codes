@@ -29,7 +29,7 @@ model.compile(
 
 import time
 tensorboard = tf.keras.callbacks.TensorBoard(log_dir="logs/{}".format(time.time()))
-# tensorboard --logdir=logs
+# tensorboard --logdir=logs   ### will fetch the logs
 
 
 history = model.fit(x, Y, epochs=200,callbacks=[tensorboard])
@@ -39,3 +39,55 @@ accuracy = max(history.history.get('accuracy'))*100
 # plot_decision_regions(x, Y, clf=model, legend=2)
 # plt.suptitle('Accuracy'+str(accuracy))
 # plt.show()
+
+### second example of mnist
+from tensorflow.keras.datasets import mnist
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+def mnist_ai_model():  ## model creation
+    inputs = tf.keras.Input(shape=(28*28,))
+    features = tf.keras.layers.Dense(512,activation="relu")(inputs)
+    features = tf.keras.layers.Dropout(0.5)(features)
+    outputs = tf.keras.layers.Dense(10,activation="softmax")(features)
+    model = tf.keras.Model(inputs,outputs)
+    return model
+
+(tr_img,tr_label),(te_img,te_label)= mnist.load_data()
+
+## normalization
+tr_img = tr_img.reshape((60000,28*28)).astype("float32")/255
+te_img = te_img.reshape((10000,28*28)).astype("float32")/255
+
+tr_img, val_img = tr_img[10000:],tr_img[:10000]
+tr_label, val_label = tr_label[10000:],tr_label[:10000]
+
+ai_model = mnist_ai_model()
+
+###add callback for storing the training session
+callback_list =[
+    tf.keras.callbacks.ModelCheckpoint(
+        filepath = "checkpoint_ai_model",
+        monitor = "val_loss",
+        save_best_only = True
+    )
+]
+ai_model.compile(optimizer='rmsprop',loss='sparse_categorical_crossentropy',
+                metrics=['accuracy'])
+ai_model.fit(tr_img,tr_label,epochs=5,validation_data=(val_img,val_label),callbacks=callback_list)
+
+test_eval_mat = ai_model.evaluate(te_img,te_label)
+predict = ai_model.predict(te_img)
+
+print('Accuracy',test_eval_mat[1])
+
+
+pred_label = np.argmax(predict,axis=1)
+cm = confusion_matrix(te_label,pred_label)
+
+sns.heatmap(cm,annot=True, fmt=".3f", linewidths=.5, square = True, cmap = 'Blues_r')
+plt.ylabel('Actual label')
+plt.xlabel('Predicted label')
+plt.show()
