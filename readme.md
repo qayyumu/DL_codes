@@ -18,5 +18,6 @@ Classical ML (random forest, logistic regression and SVM for classication
 
 ## Example 4
 Keras machine learning models with Tensorboard and variation of model defination
+callbacks for checkpoint saving, confusion matrix calculation
 
 
