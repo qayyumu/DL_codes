@@ -2,6 +2,7 @@
 ### Forecasting timeseries with 1D CNN and LSTM
 import numpy as np
 import pandas as pd
+<<<<<<< HEAD
 from sklearn import metrics
 import tensorflow as tf
 import matplotlib.pyplot as plt
@@ -9,6 +10,10 @@ from sklearn.metrics import r2_score
 from tensorflow.python.keras.layers.core import Activation
 
 skip_plot =5  ### Plot strides
+=======
+import tensorflow as tf
+import matplotlib.pyplot as plt
+>>>>>>> f9dbdeef2f028bb21bfd23870ba64973c2a2dd12
 
 url = 'https://raw.githubusercontent.com/jenfly/opsd/master/opsd_germany_daily.csv'
 
@@ -16,15 +21,21 @@ openpower_germany_df = pd.read_csv(url, sep=',', index_col=0,
                              parse_dates=[0]) 
 openpower_germany_df.columns
 
+<<<<<<< HEAD
 openpower_germany_df['Consumption'][::skip_plot].plot(marker='*')
 plt.xlabel('time')
 plt.ylabel('electricity consumption')
 plt.show()
+=======
+openpower_germany_df['Consumption'][::5].plot(marker='*')
+
+>>>>>>> f9dbdeef2f028bb21bfd23870ba64973c2a2dd12
 ### get the consumption as numpy array
 consumption_energy = openpower_germany_df['Consumption'].to_numpy()
 consumption_energy.shape
 
 ### process the data for training and testing
+<<<<<<< HEAD
 def make_data(time_series,step_x,step_y):
     x = list()
     Y = list()
@@ -127,3 +138,7 @@ plt.plot(Y[::skip_plot],alpha=0.5,color='r')
 plt.plot(Y_pred_rnn[::skip_plot],'b.')
 plt.legend(['True','RNN-pred'])
 plt.show()
+=======
+
+
+>>>>>>> f9dbdeef2f028bb21bfd23870ba64973c2a2dd12
