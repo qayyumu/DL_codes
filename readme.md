@@ -16,8 +16,14 @@ Linear classification using Perceptron & learning loop
 Tf initial orientation and keras based classification for linear/nonlinear case
 Classical ML (random forest, logistic regression and SVM for classication
 
-## Example 4
-Keras machine learning models with Tensorboard and variation of model defination
-callbacks for checkpoint saving, confusion matrix calculation
+## Example 5
+Times series prediction of energy consumption using RNN, LSTM, GRU and 1D Conv models
 
+## Example 6
+Natural language processing:implementation of sentiment analysis on movie review data
 
+## Example 7
+Generative adversarial models
+
+## Example 8
+Reinforcement Learning algorithm implementation on openai Gym
