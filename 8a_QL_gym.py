@@ -5,11 +5,7 @@ import numpy as np
 import random
 import math
 
-
-
-# initialize the "Cart-Pole" environment
-environment_name = 'CartPole-v0'
-environment = gym.make(environment_name)
+environment = gym.make('CartPole-v0')
 environment.seed(0)
 
 # 4 observations: 0:cart_position ; 1:cart_volecity ; 2:pole_angle; 3:pole_volecity_at_tip
