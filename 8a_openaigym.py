@@ -1,6 +1,6 @@
 #### Reinforcement learning basic scripts
 
-case_switch=1
+case_switch=2
 
 if (case_switch==1):
     import gym
@@ -13,23 +13,35 @@ if (case_switch==1):
         if done:
             observation = env.reset()
     env.close()
+
+
 elif(case_switch==2):
+
+    ### build an environment from scratch
     import numpy as np
     nan = np.nan
+
     actions = [[0, 1, 2], [0, 2], [0]]
+
+    ### state transition matrix
     P = np.array([
         [[1.0, 0.0, 0.0], [0.2, 0.8, 0.0], [0.5, 0.5, 0.0]],
         [[0.8, 0.2, 0.0], [nan, nan, nan], [0.0, 0.0, 1.0]],
         [[1.0, 0.0, 0.0], [nan, nan, nan], [nan, nan, nan]],
         ])
+
+    ## reward values
     R = np.array([
         [[20., 0.0, 0.0], [0.0, 0.0, 0.0], [-10., -10., 0.0]],
         [[40., 30., 0.0], [nan, nan, nan], [0.0, 0.0, -10.]],
         [[70., 0.0, 0.0], [nan, nan, nan], [nan, nan, nan]],
         ])
+
     Q = np.full((3, 3), -np.inf)
+
     for s, a in enumerate(actions):
         Q[s, a] = 0.0
+        print('s:',s,'a:',a)
  
     discount_factor = 0.999
     iterations = 10

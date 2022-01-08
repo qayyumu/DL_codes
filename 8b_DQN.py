@@ -98,7 +98,7 @@ def run():
         if mean_score >= n_win_tick and e >= 100:
             return e-100
         # if e % 100 == 0 and not quiet:
-        print("episode " + str(e) + " mean survival time over last 100 episodes was " + str(mean_score) + " ticks")
+        print("episode " + str(e) + " mean survival time over last 100 episodes was " + str(mean_score) + " Reward")
         replay(batch_size, get_epsilon(e))
     if not quiet:
         print("did not solve after " + str(e) + " episodes")
