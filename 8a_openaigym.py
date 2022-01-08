@@ -1,6 +1,6 @@
 #### Reinforcement learning basic scripts
 
-case_switch=2
+case_switch=1
 
 if (case_switch==1):
     import gym
