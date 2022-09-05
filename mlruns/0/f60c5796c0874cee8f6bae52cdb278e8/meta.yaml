@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/production/DL_codes/meta/mlflow/mlartifacts/f60c5796c0874cee8f6bae52cdb278e8/artifacts
+end_time: 1662363393579
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: f60c5796c0874cee8f6bae52cdb278e8
+run_uuid: f60c5796c0874cee8f6bae52cdb278e8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1662363387538
+status: 3
+tags: []
+user_id: PC
