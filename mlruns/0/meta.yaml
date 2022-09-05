@@ -1,0 +1,4 @@
+artifact_location: file:///D:/production/DL_codes/meta/mlflow/mlartifacts
+experiment_id: '0'
+lifecycle_stage: active
+name: MNIST MLP classifier
