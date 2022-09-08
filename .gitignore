@@ -1,0 +1,9 @@
+/data
+/meta
+cat-dog-VGG-classifier/
+mlruns/1/
+bottleneck_features_train.npy
+bottleneck_features_validation.npy
+/metrics.csv
+/model.h5
+.ipynb_checkpoints/
