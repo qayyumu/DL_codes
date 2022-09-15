@@ -5,6 +5,7 @@ metadata/*
 /meta
 cat-dog-VGG-classifier/
 mlruns/1/
+mlruns
 bottleneck_features_train.npy
 bottleneck_features_validation.npy
 /metrics.csv
