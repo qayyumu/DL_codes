@@ -1,0 +1,24 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+metadata/*
+=======
+>>>>>>> 3191ca38516dc05a50e4189c1684ab1aee7146be
+/data
+/meta
+cat-dog-VGG-classifier/
+mlruns/1/
+<<<<<<< HEAD
+=======
+mlruns
+>>>>>>> 3191ca38516dc05a50e4189c1684ab1aee7146be
+bottleneck_features_train.npy
+bottleneck_features_validation.npy
+/metrics.csv
+/model.h5
+<<<<<<< HEAD
+.ipynb_checkpoints/
+=======
+.ipynb_checkpoints/
+>>>>>>> 56e9766ee0573df61cd43e04002bf22935b58deb
+>>>>>>> 3191ca38516dc05a50e4189c1684ab1aee7146be
