@@ -1,0 +1,15 @@
+FROM ubuntu:20.04
+
+RUN apt update && apt install -y python3.8 && apt install -y python3-pip
+
+RUN python3 -m pip install mlflow
+
+
+RUN mkdir -p /home/workspace/mlruns 
+
+
+WORKDIR /home/workspace/mlruns
+
+
+# mlflow 
+EXPOSE 5000
