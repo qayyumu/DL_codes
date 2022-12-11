@@ -1,4 +1,4 @@
 outs:
-- md5: f9f697d909dae5c888cb39a1da08b585
-  size: 3328
+- md5: 597fccab623feb4367e9f6945f4ec162
+  size: 1728
   path: X_data.npy
