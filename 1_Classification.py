@@ -18,7 +18,7 @@ test_images = test_images.reshape((10000,28*28))
 test_images = test_images.astype("float32") / 255
 
 
-if 0:
+if 1:
 ### NN model and loss function
     from tensorflow import keras
     from tensorflow.keras import layers
